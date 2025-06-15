@@ -218,9 +218,10 @@ const MasterDetailComplex: React.FC = () => {
                         secondary={
                           <Stack direction="row" spacing={1} alignItems="center">
                             <Chip label={project.status} size="small" color={project.status === 'Active' ? 'success' : project.status === 'Planning' ? 'warning' : 'default'} />
-                            <Typography variant="caption" color="text.secondary">Owner: {project.owner}</Typography>
+                            <Typography variant="caption" color="text.secondary" component="span">Owner: {project.owner}</Typography>
                           </Stack>
                         }
+                        secondaryTypographyProps={{ component: 'span' }}
                       />
                     </Box>
                   ))
