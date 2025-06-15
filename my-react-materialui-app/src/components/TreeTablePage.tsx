@@ -1,5 +1,19 @@
 import React, { useState } from 'react';
-import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Card,
+  CardContent,
+  Divider,
+  useTheme,
+} from '@mui/material';
 import { SimpleTreeView } from '@mui/x-tree-view';
 import { TreeItem } from '@mui/x-tree-view';
 
@@ -45,6 +59,7 @@ function renderTree(nodes: any) {
 
 const TreeTablePage: React.FC = () => {
   const [selected, setSelected] = useState<string | null>(null);
+  const theme = useTheme();
 
   const getAllLeafIds = (node: any): string[] => {
     if (!node.children) return [node.id];
@@ -65,45 +80,75 @@ const TreeTablePage: React.FC = () => {
   };
 
   return (
-    <Box display="flex" gap={4}>
-      <Box minWidth={240}>
-        <Typography variant="h6">Tree</Typography>
-        <SimpleTreeView
-          selectedItems={selected}
-          onSelectedItemsChange={(_e, itemId) => setSelected(itemId)}
-        >
-          {treeData.map((node) => renderTree(node))}
-        </SimpleTreeView>
-      </Box>
-      <Box flex={1}>
-        <Typography variant="h6">Details Table</Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Detail</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {getSelectedTableRows().length > 0 ? (
-                getSelectedTableRows().map((row: { id: number; detail: string }) => (
-                  <TableRow key={row.id}>
-                    <TableCell>{row.id}</TableCell>
-                    <TableCell>{row.detail}</TableCell>
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell colSpan={2} align="center">
-                    Select a leaf node to see details
-                  </TableCell>
+    <Box
+      display="flex"
+      gap={4}
+      justifyContent="center"
+      alignItems="flex-start"
+      sx={{
+        minHeight: '80vh',
+        background: `linear-gradient(135deg, ${theme.palette.background.default} 60%, ${theme.palette.primary.light} 100%)`,
+        p: 4,
+        borderRadius: 3,
+      }}
+    >
+      <Card sx={{ minWidth: 280, boxShadow: 3, borderRadius: 2 }}>
+        <CardContent>
+          <Typography variant="h6" color="primary" gutterBottom align="center">
+            Category Tree
+          </Typography>
+          <Divider sx={{ mb: 2 }} />
+          <SimpleTreeView
+            selectedItems={selected}
+            onSelectedItemsChange={(_e, itemId) => setSelected(itemId)}
+            sx={{
+              minHeight: 300,
+              px: 1,
+              py: 1,
+              background: theme.palette.background.paper,
+              borderRadius: 1,
+            }}
+          >
+            {treeData.map((node) => renderTree(node))}
+          </SimpleTreeView>
+        </CardContent>
+      </Card>
+      <Card sx={{ flex: 1, boxShadow: 3, borderRadius: 2 }}>
+        <CardContent>
+          <Typography variant="h6" color="primary" gutterBottom align="center">
+            Details Table
+          </Typography>
+          <Divider sx={{ mb: 2 }} />
+          <TableContainer component={Paper} sx={{ boxShadow: 0, borderRadius: 2 }}>
+            <Table>
+              <TableHead>
+                <TableRow sx={{ background: theme.palette.action.hover }}>
+                  <TableCell sx={{ fontWeight: 'bold' }}>ID</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold' }}>Detail</TableCell>
                 </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+              </TableHead>
+              <TableBody>
+                {getSelectedTableRows().length > 0 ? (
+                  getSelectedTableRows().map((row: { id: number; detail: string }) => (
+                    <TableRow key={row.id} hover>
+                      <TableCell>{row.id}</TableCell>
+                      <TableCell>{row.detail}</TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={2} align="center">
+                      <Typography color="text.secondary" variant="body2">
+                        Select a category or item to see details
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </CardContent>
+      </Card>
     </Box>
   );
 };
