@@ -9,10 +9,11 @@ my-react-materialui-app
 ├── public
 │   └── index.html          # Main HTML file for the application
 ├── src
-│   ├── App.tsx            # Main application component
+│   ├── App.tsx            # Main application component with routing
 │   ├── index.tsx          # Entry point of the React application
 │   ├── components
-│   │   └── ExampleComponent.tsx # Sample UI component using Material UI
+│   │   ├── ExampleComponent.tsx # Sample UI component using Material UI
+│   │   └── TreeTablePage.tsx    # Page with tree and table interaction
 │   └── theme
 │       └── theme.ts       # Custom Material UI theme
 ├── package.json            # npm configuration file
@@ -32,12 +33,12 @@ To get started with this project, follow these steps:
 
 2. **Install dependencies:**
    ```
-   npm install
+   pnpm install
    ```
 
 3. **Run the application:**
    ```
-   npm start
+   pnpm start
    ```
 
 4. **Open your browser:**
@@ -45,11 +46,10 @@ To get started with this project, follow these steps:
 
 ## Usage
 
-The main application component is located in `src/App.tsx`. You can modify this file to change the structure and behavior of your application.
-
-The `ExampleComponent` in `src/components/ExampleComponent.tsx` serves as a sample UI element that demonstrates the use of Material UI components.
-
-You can customize the Material UI theme in `src/theme/theme.ts` to fit your design requirements.
+- The main application component is located in `src/App.tsx` and now includes routing with a landing page and a Tree Table page.
+- The `ExampleComponent` in `src/components/ExampleComponent.tsx` serves as a sample UI element that demonstrates the use of Material UI components.
+- The `TreeTablePage` in `src/components/TreeTablePage.tsx` demonstrates a tree view with a table that updates based on tree selection.
+- You can customize the Material UI theme in `src/theme/theme.ts` to fit your design requirements.
 
 ## Contributing
 
