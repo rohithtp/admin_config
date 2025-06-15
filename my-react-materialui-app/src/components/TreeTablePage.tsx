@@ -90,37 +90,42 @@ const TreeTablePage: React.FC = () => {
         background: `linear-gradient(135deg, ${theme.palette.background.default} 60%, ${theme.palette.primary.light} 100%)`,
         p: 4,
         borderRadius: 3,
+        height: 500,
       }}
     >
-      <Card sx={{ minWidth: 280, boxShadow: 3, borderRadius: 2 }}>
-        <CardContent>
+      <Card sx={{ minWidth: 280, boxShadow: 3, borderRadius: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>
           <Typography variant="h6" color="primary" gutterBottom align="center">
             Category Tree
           </Typography>
           <Divider sx={{ mb: 2 }} />
-          <SimpleTreeView
-            selectedItems={selected}
-            onSelectedItemsChange={(_e, itemId) => setSelected(itemId)}
-            sx={{
-              minHeight: 300,
-              px: 1,
-              py: 1,
-              background: theme.palette.background.paper,
-              borderRadius: 1,
-            }}
-          >
-            {treeData.map((node) => renderTree(node))}
-          </SimpleTreeView>
+          <Box sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+            <SimpleTreeView
+              selectedItems={selected}
+              onSelectedItemsChange={(_e, itemId) => setSelected(itemId)}
+              sx={{
+                flex: 1,
+                minHeight: 0,
+                px: 1,
+                py: 1,
+                background: theme.palette.background.paper,
+                borderRadius: 1,
+                overflow: 'auto',
+              }}
+            >
+              {treeData.map((node) => renderTree(node))}
+            </SimpleTreeView>
+          </Box>
         </CardContent>
       </Card>
-      <Card sx={{ flex: 1, boxShadow: 3, borderRadius: 2 }}>
-        <CardContent>
+      <Card sx={{ flex: 1, boxShadow: 3, borderRadius: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>
           <Typography variant="h6" color="primary" gutterBottom align="center">
             Details Table
           </Typography>
           <Divider sx={{ mb: 2 }} />
-          <TableContainer component={Paper} sx={{ boxShadow: 0, borderRadius: 2 }}>
-            <Table>
+          <TableContainer component={Paper} sx={{ boxShadow: 0, borderRadius: 2, flex: 1, minHeight: 0, overflow: 'auto' }}>
+            <Table stickyHeader>
               <TableHead>
                 <TableRow sx={{ background: theme.palette.action.hover }}>
                   <TableCell sx={{ fontWeight: 'bold' }}>ID</TableCell>

@@ -5,6 +5,7 @@ import theme from './theme/theme';
 import ExampleComponent from './components/ExampleComponent';
 import TreeTablePage from './components/TreeTablePage';
 import VisualTreeTablePage from './components/VisualTreeTablePage';
+import MasterDetailComplex from './components/MasterDetailComplex';
 import { ThemeProvider } from '@mui/material/styles';
 
 const LandingPage: React.FC = () => (
@@ -37,6 +38,16 @@ const LandingPage: React.FC = () => (
       >
         Go to Visual Tree Table Page
       </Button>
+      <Button
+        variant="contained"
+        color="info"
+        size="large"
+        component={Link}
+        to="/master-detail-complex"
+        sx={{ mt: 2, borderRadius: 2, fontWeight: 600, ml: 2 }}
+      >
+        Go to Master-Detail Complex
+      </Button>
     </Paper>
   </Container>
 );
@@ -50,6 +61,7 @@ const App: React.FC = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/tree-table" element={<TreeTablePage />} />
           <Route path="/visual-tree-table" element={<VisualTreeTablePage />} />
+          <Route path="/master-detail-complex" element={<MasterDetailComplex />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
