@@ -4,6 +4,7 @@ import { CssBaseline, Box, Typography, Button, Container, Paper, Divider } from 
 import theme from './theme/theme';
 import ExampleComponent from './components/ExampleComponent';
 import TreeTablePage from './components/TreeTablePage';
+import VisualTreeTablePage from './components/VisualTreeTablePage';
 import { ThemeProvider } from '@mui/material/styles';
 
 const LandingPage: React.FC = () => (
@@ -26,6 +27,16 @@ const LandingPage: React.FC = () => (
       >
         Go to Tree Table Page
       </Button>
+      <Button
+        variant="contained"
+        color="secondary"
+        size="large"
+        component={Link}
+        to="/visual-tree-table"
+        sx={{ mt: 2, borderRadius: 2, fontWeight: 600, ml: 2 }}
+      >
+        Go to Visual Tree Table Page
+      </Button>
     </Paper>
   </Container>
 );
@@ -38,6 +49,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/tree-table" element={<TreeTablePage />} />
+          <Route path="/visual-tree-table" element={<VisualTreeTablePage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
